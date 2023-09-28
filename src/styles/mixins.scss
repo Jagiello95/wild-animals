@@ -1,0 +1,10 @@
+@mixin host($color) {
+  background-color: $color;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  flex: 1;
+}

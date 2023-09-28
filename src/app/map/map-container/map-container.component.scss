@@ -1,0 +1,25 @@
+@import "mixins";
+@import "common";
+:host {
+  @include host(cyan);
+}
+
+.map-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.gmap-container {
+  flex: 3;
+}
+
+.gmap-controls {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &__btn {
+    margin-top: 1rem;
+  }
+}
