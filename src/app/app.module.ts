@@ -11,22 +11,29 @@ import { SectionModule } from './section/section.module';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryTwoComponent } from './components/category-two/category-two.component';
 import { SectionTwoModule } from './section-two/section-two.module';
+import { HomeComponent } from './components/home/home.component';
+import { CardComponent } from './shared/components/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const matModules = [MatButtonModule, MatCardModule];
+const standalone = [CardComponent];
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     CategoryTwoComponent,
     LayoutComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SectionModule,
     SectionTwoModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ...matModules,
+    ...standalone,
   ],
   providers: [],
   bootstrap: [AppComponent],

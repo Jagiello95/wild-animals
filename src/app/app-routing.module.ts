@@ -2,8 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryTwoComponent } from './components/category-two/category-two.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+    data: { animation: '0' },
+  },
   {
     path: '1',
     loadChildren: () =>

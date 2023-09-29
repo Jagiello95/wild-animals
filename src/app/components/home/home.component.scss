@@ -1,0 +1,15 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.card {
+  &-one {
+    margin-right: 0.5rem;
+  }
+
+  &-two {
+    margin-left: 0.5rem;
+  }
+}

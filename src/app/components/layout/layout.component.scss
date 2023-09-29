@@ -17,5 +17,7 @@
 .top-layout {
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 90vw;
+  height: 90vh;
+  flex: unset !important;
 }
