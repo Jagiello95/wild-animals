@@ -29,14 +29,14 @@ import {
 } from 'src/app/animations/horizontal-slide';
 
 export const slideInAnimation = trigger('routeAnimations', [
-  transition('0 => 1', horizontalSlideAnimation),
-  transition('1 => 0', horizontalSlideAnimation),
-  transition('0 => 2', horizontalSlideAnimation),
-  transition('2 => 0', horizontalSlideAnimation),
-  // transition('* => 1', horizontalSlideAnimation),
-  // transition('* => 2', horizontalSlideAnimation),
-  transition('1 => 2', horizontalSlideAnimation),
-  transition('2 => 1', reversedHorizontalSlideAnimation),
-  transition('* => 3', reversedVerticalSlideAnimation),
-  transition('3 => *', verticalSlideAnimation),
+  // transition('0 => 1', horizontalSlideAnimation),
+  // transition('1 => 0', horizontalSlideAnimation),
+  // transition('0 => 2', horizontalSlideAnimation),
+  // transition('2 => 0', horizontalSlideAnimation),
+  // // transition('* => 1', horizontalSlideAnimation),
+  // // transition('* => 2', horizontalSlideAnimation),
+  // transition('1 => 2', horizontalSlideAnimation),
+  // transition('2 => 1', horizontalSlideAnimation),
+  // transition('* => 3', horizontalSlideAnimation),
+  transition('* => *', horizontalSlideAnimation),
 ]);

@@ -12,4 +12,8 @@ export class QueryService {
   public testConnection(): Observable<any> {
     return this.http.get(this.api);
   }
+
+  public login(): Observable<any> {
+    return this.http.get(this.api);
+  }
 }

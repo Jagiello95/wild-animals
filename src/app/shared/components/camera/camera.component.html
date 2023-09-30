@@ -1,7 +1,8 @@
 <div class="flex flex-column w-100 h-100">
   <webcam
     class="webcam"
-    [height]="1000"
+    [width]="width"
+    [height]="height"
     [trigger]="trigger"
     (imageCapture)="onImageCapture($event)"
     (initError)="handleInitError($event)"

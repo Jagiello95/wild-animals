@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from '@auth0/auth0-angular';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,14 +15,22 @@ import { CategoryTwoComponent } from './components/category-two/category-two.com
 import { SectionTwoModule } from './section-two/section-two.module';
 import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './shared/components/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CameraComponent } from './shared/components/camera/camera.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthComponent } from './components/auth/auth.component';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
-const matModules = [MatButtonModule, MatCardModule, MatIconModule];
+const matModules = [
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+];
 const standalone = [CardComponent, CameraComponent];
 @NgModule({
   declarations: [
@@ -32,6 +40,7 @@ const standalone = [CardComponent, CameraComponent];
     LayoutComponent,
     HomeComponent,
     NavbarComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +49,7 @@ const standalone = [CardComponent, CameraComponent];
     SectionModule,
     SectionTwoModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ...matModules,
     ...standalone,
@@ -56,8 +66,16 @@ const standalone = [CardComponent, CameraComponent];
         redirect_uri: window.location.origin,
       },
     }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

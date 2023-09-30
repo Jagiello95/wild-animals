@@ -1,1 +1,31 @@
-<mat-icon *ngFor="let nav of navOptions">{{ nav.icon }}</mat-icon>
+<button
+  *ngFor="let nav of navOptions"
+  color="primary"
+  class="nav-button"
+  [routerLink]="nav.route"
+  mat-mini-fab
+  aria-label="Example icon button with a home icon"
+>
+  <mat-icon>{{ nav.icon }}</mat-icon>
+</button>
+
+<button
+  *ngIf="(auth.isAuthenticated$ | async) === false"
+  color="primary"
+  class="nav-button"
+  mat-mini-fab
+  (click)="login()"
+  aria-label="Example icon button with a home icon"
+>
+  <mat-icon>account_circle</mat-icon>
+</button>
+<button
+  *ngIf="(auth.isAuthenticated$ | async) === true"
+  color="primary"
+  class="nav-button"
+  mat-mini-fab
+  (click)="logout()"
+  aria-label="Example icon button with a home icon"
+>
+  <mat-icon>exit_to_app</mat-icon>
+</button>

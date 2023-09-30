@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-navbar',
@@ -8,8 +9,30 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   public navOptions = [
     {
-      icon: 'person',
-      route: 'login',
+      icon: 'pets',
+      route: '1',
+    },
+    {
+      icon: 'report_problem',
+      route: '2',
+    },
+    {
+      icon: 'camera_alt',
+      route: 'camera',
+    },
+    {
+      icon: 'map',
+      route: 'map',
     },
   ];
+
+  public login(): void {
+    this.auth.loginWithRedirect();
+  }
+
+  public logout(): void {
+    this.auth.logout();
+  }
+
+  constructor(public auth: AuthService) {}
 }

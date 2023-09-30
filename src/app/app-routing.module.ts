@@ -4,6 +4,8 @@ import { CategoryComponent } from './components/category/category.component';
 import { CategoryTwoComponent } from './components/category-two/category-two.component';
 import { HomeComponent } from './components/home/home.component';
 import { CameraComponent } from './shared/components/camera/camera.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
@@ -26,14 +28,19 @@ const routes: Routes = [
     data: { animation: '2' },
   },
   {
-    path: '3',
+    path: 'map',
     loadChildren: () => import('./map/map.module').then((m) => m.MapModule),
     data: { animation: '3' },
   },
   {
-    path: '4',
+    path: 'camera',
     component: CameraComponent,
-    data: { animation: '0' },
+    data: { animation: '4' },
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    data: { animation: '4' },
   },
 ];
 
