@@ -1,32 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { WebcamModule } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { CardComponent } from '../../shared/components/card';
 
 @Component({
   selector: 'camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
-  standalone: true,
-  imports: [WebcamModule, MatButtonModule, CommonModule],
 })
 export class CameraComponent {
-  trigger: Subject<void> = new Subject<void>();
+  public trigger: Subject<void> = new Subject<void>();
   imageTaken: null;
   width: number;
   height: number;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event?: Event) {
-    const win = !!event ? (event.target as Window) : window;
-    this.width = win.innerWidth;
-    this.height = win.innerHeight;
-  }
-
-  constructor() {
-    this.onResize();
-  }
+  constructor() {}
 
   public onImageCapture(event) {
     this.imageTaken = event._imageAsDataUrl;

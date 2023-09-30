@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryTwoComponent } from './components/category-two/category-two.component';
 import { HomeComponent } from './components/home/home.component';
-import { CameraComponent } from './shared/components/camera/camera.component';
+import { CameraComponent } from './components/camera/camera.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { MapContainerComponent } from './components/map-container/map-container.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'map',
-    loadChildren: () => import('./map/map.module').then((m) => m.MapModule),
+    component: MapContainerComponent,
     data: { animation: '3' },
   },
   {

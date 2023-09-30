@@ -38,5 +38,5 @@ export const slideInAnimation = trigger('routeAnimations', [
   // transition('1 => 2', horizontalSlideAnimation),
   // transition('2 => 1', horizontalSlideAnimation),
   // transition('* => 3', horizontalSlideAnimation),
-  transition('* => *', horizontalSlideAnimation),
+  transition('* => *', slide),
 ]);

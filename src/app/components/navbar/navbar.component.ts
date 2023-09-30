@@ -9,12 +9,8 @@ import { AuthService } from '@auth0/auth0-angular';
 export class NavbarComponent {
   public navOptions = [
     {
-      icon: 'pets',
-      route: '1',
-    },
-    {
-      icon: 'report_problem',
-      route: '2',
+      icon: 'home',
+      route: '',
     },
     {
       icon: 'camera_alt',

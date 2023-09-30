@@ -4,13 +4,16 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { MarkerPopupComponent } from 'src/app/components/map-container/marker-popup/marker-popup.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'card',
   standalone: true,
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  imports: [CommonModule, MatCardModule, MatIconModule],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule],
 })
 export class CardComponent {
   @Input() header: string;
@@ -18,5 +21,8 @@ export class CardComponent {
   @Input() iconLeft: boolean = false;
   @Input() iconRight: boolean = false;
 
-  constructor(public data: DataService) {}
+  openDialog(): void {
+    this.dialog.open(MarkerPopupComponent);
+  }
+  constructor(public data: DataService, public dialog: Dialog) {}
 }

@@ -1,0 +1,8 @@
+<webcam
+  class="webcam"
+  [trigger]="trigger"
+  (imageCapture)="onImageCapture($event)"
+  (initError)="handleInitError($event)"
+></webcam>
+
+<!-- <img *ngIf="imageTaken" [src]="imageTaken" alt="Place image title" /> -->

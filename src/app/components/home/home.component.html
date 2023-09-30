@@ -1,17 +1,39 @@
-<card
-  class="card-one"
-  routerLink="/1"
-  header="I lost an animal!"
-  icon="pets"
-  [iconLeft]="data.isMobile"
-  >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis
-  iaculis erat, et finibus lacus bibendum porta.</card
->
-<card
-  class="card-two"
-  routerLink="/2"
-  header="I see an animal!"
-  icon="travel_explore"
-  [iconRight]="data.isMobile"
->
-</card>
+<div class="card-container">
+  <card
+    class="card-one"
+    routerLink="/1"
+    header="Coś tam, coś tam"
+    icon="pets"
+    [iconLeft]="data.isMobile"
+    >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis
+    iaculis erat, et finibus lacus bibendum porta.</card
+  >
+  <card
+    class="card-two"
+    routerLink="/2"
+    header="Zgłoś problem!"
+    icon="report_problem"
+    [iconRight]="data.isMobile"
+  >
+  </card>
+</div>
+
+<div class="card-container">
+  <card
+    class="card-one"
+    routerLink="/2"
+    header="Podziel się znaleziskiem!"
+    icon="camera_alt"
+    [iconRight]="data.isMobile"
+  >
+  </card>
+
+  <card
+    class="card-two"
+    routerLink="/2"
+    header="Zobacz mapę!"
+    icon="map"
+    [iconRight]="data.isMobile"
+  >
+  </card>
+</div>

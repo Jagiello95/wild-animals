@@ -10,7 +10,7 @@
 </button>
 
 <button
-  *ngIf="(auth.isAuthenticated$ | async) === false"
+  *ngIf="!(auth.isAuthenticated$ | async)"
   color="primary"
   class="nav-button"
   mat-mini-fab

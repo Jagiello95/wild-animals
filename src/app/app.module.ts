@@ -17,21 +17,33 @@ import { HomeComponent } from './components/home/home.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { CameraComponent } from './shared/components/camera/camera.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthComponent } from './components/auth/auth.component';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+
+import { MapContainerComponent } from './components/map-container/map-container.component';
+import { MarkerPopupComponent } from './components/map-container/marker-popup/marker-popup.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CameraComponent } from './components/camera/camera.component';
+import { WebcamModule } from 'ngx-webcam';
 
 const matModules = [
   MatButtonModule,
   MatCardModule,
   MatIconModule,
   MatInputModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatFormFieldModule,
 ];
-const standalone = [CardComponent, CameraComponent];
+
+const standalone = [CardComponent];
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,25 +52,24 @@ const standalone = [CardComponent, CameraComponent];
     LayoutComponent,
     HomeComponent,
     NavbarComponent,
+    MapContainerComponent,
     AuthComponent,
+    CameraComponent,
+    MarkerPopupComponent,
   ],
   imports: [
     BrowserModule,
+    LeafletModule,
     AppRoutingModule,
     CommonModule,
     SectionModule,
+    WebcamModule,
     SectionTwoModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ...matModules,
     ...standalone,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
     AuthModule.forRoot({
       domain: 'dev-b8sfyb91.us.auth0.com',
       clientId: 'Z5yAH5junMOuqG3RgJLdX6kqc95MNajA',
@@ -68,13 +79,16 @@ const standalone = [CardComponent, CameraComponent];
     }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
+
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
   ],
   bootstrap: [AppComponent],
 })

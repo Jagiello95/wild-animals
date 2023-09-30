@@ -1,7 +1,8 @@
 @import "common";
 
-$cutoutX: 5rem;
-$cutoutY: 5rem;
+$cutoutX: 4rem;
+$cutoutY: 4rem;
+$cardHeaderColor: #8bc34a;
 
 :host {
   display: block;
@@ -9,22 +10,22 @@ $cutoutY: 5rem;
   width: 100%;
 }
 
-.mat-mdc-card {
+.card {
   height: 100%;
   width: 100%;
-  border: unset !important;
-  box-shadow: unset !important;
-  border-radius: 0 var(--mdc-elevated-card-container-shape)
-    var(--mdc-elevated-card-container-shape) 0 !important;
+  border-radius: 0 0 1rem 1rem;
+  background-color: white;
 
-  &-header {
+  &__header {
+    padding: 2rem 1rem !important;
+
     display: flex;
     justify-content: center;
     font-weight: bold;
     font-size: $font-size-1;
   }
 
-  &-content {
+  &__content {
     padding: 2rem 1rem !important;
     // margin-top: 2rem !important;
     display: flex;
@@ -45,8 +46,17 @@ $cutoutY: 5rem;
   }
 
   &__fill {
-    background-color: $colorCard;
     flex: 1;
+
+    &--one {
+      border-radius: 1rem 0 0 0;
+      background-color: $cardHeaderColor;
+    }
+
+    &--two {
+      border-radius: 0 1rem 0 0;
+      background-color: $cardHeaderColor;
+    }
   }
 
   &__circle {
@@ -54,12 +64,16 @@ $cutoutY: 5rem;
     width: calc($cutoutX - 1rem);
     background-color: $colorCard;
     border-radius: 50%;
+    background-color: $cardHeaderColor;
+    color: white;
     display: inline-block;
     top: 0;
     justify-content: center;
     align-items: center;
     display: flex;
-    @extend .absolute-center-x;
+    position: absolute;
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -70,47 +84,6 @@ $cutoutY: 5rem;
   width: 100%;
   height: 100%;
   border-radius: 100%;
-  box-shadow: 0px $cutoutX 0px $cutoutY $colorCard;
-}
 
-.cutoutLeft {
-  width: $cutoutX;
-  height: $cutoutY;
-  position: relative;
-  overflow: hidden;
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    position: relative;
-  }
-
-  &__fill {
-    background-color: $colorCard;
-    flex: 1;
-  }
-
-  &__circle {
-    height: calc($cutoutY - 1rem);
-    width: calc($cutoutX - 1rem);
-    background-color: $colorCard;
-    border-radius: 50%;
-    display: inline-block;
-    top: 0;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    @extend .absolute-center-x;
-  }
-}
-
-.cutout::before {
-  content: "";
-  position: absolute;
-  bottom: 50%;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  box-shadow: 0px $cutoutX 0px $cutoutY $colorCard;
+  box-shadow: 0px $cutoutX 0px $cutoutY $cardHeaderColor;
 }
