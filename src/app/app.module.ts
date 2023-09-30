@@ -7,6 +7,8 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+
 import { MatCardModule } from '@angular/material/card';
 import { LayoutComponent } from './components/layout/layout.component';
 import { SectionModule } from './section/section.module';
@@ -30,8 +32,11 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MapContainerComponent } from './components/map-container/map-container.component';
 import { MarkerPopupComponent } from './components/map-container/marker-popup/marker-popup.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 import { CameraComponent } from './components/camera/camera.component';
 import { WebcamModule } from 'ngx-webcam';
+import { AddComponent } from './components/add/add.component';
 
 const matModules = [
   MatButtonModule,
@@ -41,6 +46,8 @@ const matModules = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatFormFieldModule,
+  MatGridListModule,
+  MatSelectModule,
 ];
 
 const standalone = [CardComponent];
@@ -56,6 +63,7 @@ const standalone = [CardComponent];
     AuthComponent,
     CameraComponent,
     MarkerPopupComponent,
+    AddComponent,
   ],
   imports: [
     BrowserModule,

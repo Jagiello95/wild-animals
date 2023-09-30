@@ -7,6 +7,7 @@ import { CameraComponent } from './components/camera/camera.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { MapContainerComponent } from './components/map-container/map-container.component';
+import { AddComponent } from './components/add/add.component';
 
 const routes: Routes = [
   {
@@ -39,8 +40,8 @@ const routes: Routes = [
     data: { animation: '4' },
   },
   {
-    path: 'auth',
-    component: AuthComponent,
+    path: 'add',
+    component: AddComponent,
     data: { animation: '4' },
   },
 ];

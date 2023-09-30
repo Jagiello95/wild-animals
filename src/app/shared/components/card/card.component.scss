@@ -30,6 +30,10 @@ $cardHeaderColor: #8bc34a;
     // margin-top: 2rem !important;
     display: flex;
     justify-content: center;
+
+    &--column {
+      flex-direction: column;
+    }
   }
 }
 

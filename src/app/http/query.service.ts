@@ -13,7 +13,36 @@ export class QueryService {
     return this.http.get(this.api);
   }
 
-  public login(): Observable<any> {
-    return this.http.get(this.api);
+  public postImg(image: any): Observable<any> {
+    const data = { image: image };
+
+    const incidentApi = 'https://hackyeah.azurewebsites.net/Incident';
+    return this.http.post(incidentApi, data);
+  }
+
+  public postPoint(
+    x,
+    y,
+    spieciesCategory,
+    concreteSpecies,
+    type,
+    incidentLevel,
+    description
+  ): Observable<any> {
+    const incidentType = {
+      incidentLevel,
+      type,
+    };
+    const data = {
+      x,
+      y,
+      spieciesCategory,
+      concreteSpecies,
+      incidentType,
+      description,
+    };
+
+    const incidentApi = 'https://hackyeah.azurewebsites.net/Incident/add';
+    return this.http.post(incidentApi, data);
   }
 }
