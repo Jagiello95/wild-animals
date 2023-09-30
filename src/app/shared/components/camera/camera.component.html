@@ -1,0 +1,12 @@
+<div class="flex flex-column w-100 h-100">
+  <webcam
+    class="webcam"
+    [height]="1000"
+    [trigger]="trigger"
+    (imageCapture)="onImageCapture($event)"
+    (initError)="handleInitError($event)"
+  ></webcam>
+
+  <button mat-raised-button (click)="trigger.next()">Take a photo</button>
+  <img *ngIf="imageTaken" [src]="imageTaken" alt="Place image title" />
+</div>

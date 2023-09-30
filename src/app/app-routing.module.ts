@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './components/category/category.component';
 import { CategoryTwoComponent } from './components/category-two/category-two.component';
 import { HomeComponent } from './components/home/home.component';
+import { CameraComponent } from './shared/components/camera/camera.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
     path: '3',
     loadChildren: () => import('./map/map.module').then((m) => m.MapModule),
     data: { animation: '3' },
+  },
+  {
+    path: '4',
+    component: CameraComponent,
+    data: { animation: '0' },
   },
 ];
 

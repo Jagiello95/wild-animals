@@ -1,2 +1,17 @@
-<card class="card-one" routerLink="/1">hello</card>
-<card class="card-two" routerLink="/2">hello2</card>
+<card
+  class="card-one"
+  routerLink="/1"
+  header="I lost an animal!"
+  icon="pets"
+  [iconLeft]="data.isMobile"
+  >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis
+  iaculis erat, et finibus lacus bibendum porta.</card
+>
+<card
+  class="card-two"
+  routerLink="/2"
+  header="I see an animal!"
+  icon="travel_explore"
+  [iconRight]="data.isMobile"
+>
+</card>

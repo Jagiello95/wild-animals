@@ -1978,22 +1978,22 @@ export const slide: AnimationReferenceMetadata = animation(
       query(
         ':enter',
         [
-          style({ opacity: '0' }),
+          // style({ opacity: '0' }),
           animate(
-            '{{enterTiming}}s {{enterDelay}}s ease-out',
+            '0.5s ease-in-out',
             keyframes([
               style({
-                opacity: '0.5',
+                // opacity: '0.5',
                 transform: 'translateZ(-500px) translateX(200%)',
                 offset: 0,
               }),
               style({
-                opacity: '0.5',
+                // opacity: '0.5',
                 transform: 'translateZ(-500px)',
                 offset: 0.75,
               }),
               style({
-                opacity: '1',
+                // opacity: '1',
                 transform: 'translateZ(0) translateX(0)',
                 offset: 1,
               }),
@@ -2006,21 +2006,21 @@ export const slide: AnimationReferenceMetadata = animation(
         ':leave',
         [
           animate(
-            '{{leaveTiming}}s {{leaveDelay}}s ease-out',
+            '0.5s ease-in-out',
             keyframes([
               style({ opacity: '1', offset: 0 }),
               style({
-                opacity: '0.5',
+                // opacity: '0.5',
                 transform: 'translateZ(-500px)',
                 offset: 0.25,
               }),
               style({
-                opacity: '0.5',
+                // opacity: '0.5',
                 transform: 'translateZ(-500px) translateX(-200%)',
                 offset: 0.75,
               }),
               style({
-                opacity: '0',
+                // opacity: '0',
                 transform: 'translateZ(-500px) translateX(-200%)',
                 offset: 1,
               }),

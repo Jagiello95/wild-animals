@@ -1,5 +1,7 @@
 @import "./section-layout";
 @import "./material";
+@import "./variables.scss";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html,
 body {

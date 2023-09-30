@@ -2,6 +2,7 @@
   height: 100%;
   width: 100%;
   display: flex;
+  margin-top: 5rem;
 }
 
 .card {
@@ -11,5 +12,23 @@
 
   &-two {
     margin-left: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  :host {
+    flex-direction: column;
+  }
+
+  .card {
+    &-one {
+      margin-bottom: 0.5rem;
+      margin-right: 0;
+    }
+
+    &-two {
+      margin-top: 0.5rem;
+      margin-left: 0;
+    }
   }
 }

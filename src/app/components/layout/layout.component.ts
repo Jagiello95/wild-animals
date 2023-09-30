@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { slideInAnimation } from './animations';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +10,9 @@ import { slideInAnimation } from './animations';
   animations: [slideInAnimation],
 })
 export class LayoutComponent implements OnInit {
-  constructor() {}
+  constructor(public data: DataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('On mobile:', this.data.isMobile);
+  }
 }

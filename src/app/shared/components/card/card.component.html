@@ -1,3 +1,19 @@
+<!--
+<div
+  class="cutout__container"
+  [class.cutoutLeft__container]="iconLeft"
+  [class.cutoutRight__container]="iconRight"
+>
+  <div class="cutout__fill"></div>
+  <div class="cutout"></div>
+  <div class="cutout__fill"></div>
+  <div class="cutout__circle">
+    <mat-icon>{{ icon }}</mat-icon>
+  </div>
+</div>
+-->
+
 <mat-card>
+  <mat-card-header *ngIf="header">{{ header }}</mat-card-header>
   <mat-card-content> <ng-content></ng-content> </mat-card-content>
 </mat-card>
