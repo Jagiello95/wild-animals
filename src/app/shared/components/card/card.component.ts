@@ -20,6 +20,7 @@ export class CardComponent {
   @Input() icon: string;
   @Input() iconLeft: boolean = false;
   @Input() iconRight: boolean = false;
+  @Input() column: boolean = false;
 
   openDialog(): void {
     this.dialog.open(MarkerPopupComponent);

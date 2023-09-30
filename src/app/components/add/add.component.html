@@ -1,0 +1,52 @@
+<card
+  class="card-one"
+  header="Dodaj punkt"
+  icon="add"
+  [formGroup]="form"
+  [column]="true"
+>
+  <mat-form-field class="control">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="concreteSpecies">
+      <mat-option *ngFor="let option of concreteSpecies" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="control">
+    <mat-label>Species</mat-label>
+    <mat-select formControlName="spieciesCategory">
+      <mat-option *ngFor="let option of spieciesCategory" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="control">
+    <mat-label>Species</mat-label>
+    <mat-select formControlName="incidentType">
+      <mat-option *ngFor="let option of incidentTypes" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="control control--text">
+    <mat-label>Leave a description</mat-label>
+    <textarea
+      matInput
+      placeholder="Ex. It makes me feel..."
+      formControlName="description"
+    ></textarea>
+  </mat-form-field>
+
+  <button
+    class="control--btn"
+    mat-raised-button
+    color="primary"
+    (click)="submit()"
+  >
+    Submit
+  </button>
+</card>

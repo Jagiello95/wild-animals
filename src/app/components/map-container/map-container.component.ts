@@ -1,8 +1,10 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, from } from 'rxjs';
+import { DataService } from 'src/app/shared/services/data.service';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 @Component({
@@ -10,19 +12,29 @@ Leaflet.Icon.Default.imagePath = 'assets/';
   templateUrl: './map-container.component.html',
   styleUrls: ['./map-container.component.scss'],
 })
-export class MapContainerComponent {
+export class MapContainerComponent implements OnInit {
   map!: Leaflet.Map;
   markers: Leaflet.Marker[] = [];
-  options = {
-    layers: [
-      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }),
-    ],
-    zoom: 16,
-    center: { lat: 28.626137, lng: 79.821603 },
-  };
+  options = null;
+
+  ngOnInit(): void {
+    this.dataService.getPosition().subscribe(({ lng, lat }: any) => {
+      console.log(lng, lat);
+      this.options = {
+        layers: [
+          Leaflet.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            }
+          ),
+        ],
+        zoom: 16,
+        center: { lat, lng },
+      };
+    });
+  }
 
   initMarkers() {
     const initialMarkers = [
@@ -45,7 +57,7 @@ export class MapContainerComponent {
       marker
         .addTo(this.map)
         .bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
-      this.map.panTo(data.position);
+      // this.map.panTo(data.position);
       this.markers.push(marker);
     }
   }
@@ -77,5 +89,5 @@ export class MapContainerComponent {
     console.log($event.target.getLatLng());
   }
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private dataService: DataService) {}
 }
