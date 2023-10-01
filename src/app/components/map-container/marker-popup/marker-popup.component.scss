@@ -50,6 +50,15 @@
 .actions {
   display: flex;
   justify-content: center;
+  position: relative;
+
+  &--info {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: purple !important;
+  }
 }
 
 .description {
@@ -57,4 +66,9 @@
   flex-direction: column;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
 }

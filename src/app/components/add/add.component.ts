@@ -26,7 +26,6 @@ export class AddComponent {
   ) {}
 
   buildForm(): FormGroup {
-    console.log(this.router.getCurrentNavigation()?.extras?.state);
     const { concreteSpecies, spieciesCategory, incidentType, image } =
       this.router.getCurrentNavigation().extras.state;
 
@@ -37,10 +36,10 @@ export class AddComponent {
       this.capitalizeWords(word)
     );
 
-    this.incidentType = incidentType;
-    console.log(this.concreteSpecies[0]);
+    console.log(this.concreteSpecies, this.spieciesCategory);
 
-    console.log(image);
+    this.incidentType = incidentType;
+
     return this.fb.group({
       concreteSpecies: [this.concreteSpecies[0]],
       spieciesCategory: [this.spieciesCategory[0]],
