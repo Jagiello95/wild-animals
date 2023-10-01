@@ -19,7 +19,7 @@
 >
   <mat-icon>account_circle</mat-icon>
 </button>
-<span *ngIf="(auth.isAuthenticated$ | async) === true"
+<span *ngIf="(auth.isAuthenticated$ | async) === true && !data.isMobile"
   >Witaj {{ (auth.user$ | async)?.name }}
 </span>
 <button

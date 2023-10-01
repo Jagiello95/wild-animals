@@ -1,4 +1,16 @@
-<h1 mat-dialog-title>W okolicy:</h1>
+<h1 mat-dialog-title class="mat-mdc-dialog-title--{{ type }}">
+  W okolicy:
+
+  <button
+    color="secondary"
+    class="title-btn title-btn--{{ type }}"
+    mat-mini-fab
+    [disabled]="true"
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon>{{ icon }}</mat-icon>
+  </button>
+</h1>
 <div mat-dialog-content>
   <span>
     There has been <strong>{{ concreteSpecies?.[0] }} </strong> seen here at

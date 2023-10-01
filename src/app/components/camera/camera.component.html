@@ -1,4 +1,4 @@
-<span style="position: relative">
+<div class="wrapper" (window:resize)="onResize($event)">
   <webcam
     class="webcam"
     [trigger]="trigger"
@@ -21,6 +21,5 @@
       <mat-icon>camera_alt</mat-icon>
     </button>
   </div>
-</span>
-
+</div>
 <!-- <img *ngIf="imageTaken" [src]="imageTaken" alt="Place image title" /> -->

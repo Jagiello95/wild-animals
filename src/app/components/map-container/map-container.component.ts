@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, from } from 'rxjs';
 import { DataService } from 'src/app/shared/services/data.service';
 import { QueryService } from 'src/app/http/query.service';
+import { DialogService } from 'src/app/shared/services/dialog.service';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
 
@@ -70,7 +71,7 @@ export class MapContainerComponent implements OnInit {
     // }
   }
 
-  addMarker(lat: number, lng: number, type: string, id?: string): void {
+  addMarker(lat: number, lng: number, type: any, id?: string): void {
     const data = {
       position: { lat, lng },
       draggable: false,
@@ -83,8 +84,12 @@ export class MapContainerComponent implements OnInit {
 
     if (type === 'user') {
       icon = this.getUserIcon();
-    } else {
+    } else if (type === 0) {
       icon = this.getPetsIcon(id);
+    } else if (type === 1) {
+      icon = this.getWarningIcon(id);
+    } else {
+      icon = this.getDangerIcon(id);
     }
 
     marker.addTo(this.map).setIcon(icon);
@@ -101,11 +106,7 @@ export class MapContainerComponent implements OnInit {
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
-    console.log(
-      'current',
-      this.dataService.currentPosition.lng,
-      this.dataService.currentPosition.lat
-    );
+
     this.addMarker(
       this.dataService.currentPosition.lat,
       this.dataService.currentPosition.lng,
@@ -116,7 +117,13 @@ export class MapContainerComponent implements OnInit {
       console.log(points);
       points.forEach((point) => {
         if (point.x !== this.dataService.currentPosition.lat) {
-          this.addMarker(point.x, point.y, 'pets', point.id);
+          // const type = point.
+          this.addMarker(
+            point.x,
+            point.y,
+            point.incidentType.incidentLevel,
+            point.id
+          );
         }
       });
     });
@@ -132,14 +139,7 @@ export class MapContainerComponent implements OnInit {
 
     if (id) {
       this.queryService.getPointById(id).subscribe((data) => {
-        this.zone.run(() => {
-          this.dialog.open(MarkerPopupComponent, {
-            maxHeight: '80vh',
-            maxWidth: '80vw',
-            data,
-            panelClass: 'custom-container',
-          });
-        });
+        this.dialogService.openMarkerDialog(data);
       });
     }
   }
@@ -149,7 +149,7 @@ export class MapContainerComponent implements OnInit {
   }
 
   constructor(
-    private dialog: MatDialog,
+    private dialogService: DialogService,
     private dataService: DataService,
     private queryService: QueryService,
     private zone: NgZone
@@ -168,6 +168,30 @@ export class MapContainerComponent implements OnInit {
     const icon: any = Leaflet.divIcon({
       className: 'custom-div-icon',
       html: "<div style='background-color:#8bc34a;' class='marker-pin '></div><i class='material-icons'>pets</i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42],
+    });
+
+    icon.id = id;
+    return icon;
+  }
+
+  private getWarningIcon(id: string): any {
+    const icon: any = Leaflet.divIcon({
+      className: 'custom-div-icon',
+      html: "<div style='background-color:#FFFF66;' class='marker-pin '></div><i class='material-icons'>notification_important</i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42],
+    });
+
+    icon.id = id;
+    return icon;
+  }
+
+  private getDangerIcon(id: string): any {
+    const icon: any = Leaflet.divIcon({
+      className: 'custom-div-icon',
+      html: "<div style='background-color:#f44336;' class='marker-pin '></div><i class='material-icons'>warning</i>",
       iconSize: [30, 42],
       iconAnchor: [15, 42],
     });

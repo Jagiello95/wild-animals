@@ -28,3 +28,15 @@
     height: 100vh !important;
   }
 }
+
+.phone-not {
+  position: fixed;
+  top: 3rem;
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(-50%, -50%);
+  height: 5rem;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 1rem;
+}

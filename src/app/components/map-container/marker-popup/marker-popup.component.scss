@@ -11,9 +11,40 @@
 }
 
 .mat-mdc-dialog-title {
-  background-color: #8bc34a;
   color: white !important;
   text-align: center;
+
+  &--0 {
+    background-color: #8bc34a;
+  }
+
+  &--1 {
+    background-color: #ffff66;
+  }
+
+  &--2 {
+    background-color: #f44336;
+  }
+}
+
+.title-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white !important;
+
+  &--0 {
+    color: #8bc34a !important;
+  }
+
+  &--1 {
+    color: #ffff66 !important;
+  }
+
+  &--2 {
+    color: #f44336 !important;
+  }
 }
 
 .actions {

@@ -37,6 +37,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { CameraComponent } from './components/camera/camera.component';
 import { WebcamModule } from 'ngx-webcam';
 import { AddComponent } from './components/add/add.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const matModules = [
   MatButtonModule,
@@ -48,6 +49,7 @@ const matModules = [
   MatFormFieldModule,
   MatGridListModule,
   MatSelectModule,
+  MatAutocompleteModule,
 ];
 
 const standalone = [CardComponent];

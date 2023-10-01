@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QueryService } from 'src/app/http/query.service';
 import { DataService } from 'src/app/shared/services/data.service';
+import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-add',
@@ -20,7 +21,8 @@ export class AddComponent {
     public fb: FormBuilder,
     public router: Router,
     public dataService: DataService,
-    public queryService: QueryService
+    public queryService: QueryService,
+    public dialogService: DialogService
   ) {}
 
   buildForm(): FormGroup {
@@ -42,7 +44,7 @@ export class AddComponent {
     return this.fb.group({
       concreteSpecies: [this.concreteSpecies[0]],
       spieciesCategory: [this.spieciesCategory[0]],
-      incidentType: [this.getIncidentLevel(this.incidentType.incidentLevel)],
+      incidentType: [this.getIncidentLevel(this.incidentType?.incidentLevel)],
       description: [''],
       image: [image],
     });
@@ -64,27 +66,27 @@ export class AddComponent {
   }
 
   public getIncidentLevel(level: number): string {
-    if (level == 0) {
-      return 'Information';
+    if (level == 2) {
+      return 'Danger';
     }
 
     if (level == 1) {
       return 'Warning';
     }
 
-    return 'Danger';
+    return 'Information';
   }
 
   public getIncidentType(level: string): number {
-    if (level == 'Information') {
-      return 0;
+    if (level == 'Danger') {
+      return 2;
     }
 
     if (level == 'Warning') {
       return 1;
     }
 
-    return 2;
+    return 0;
   }
 
   public submit(): void {
@@ -97,15 +99,7 @@ export class AddComponent {
         description,
         image,
       } = this.form.value;
-      console.log(
-        lat,
-        lng,
-        spieciesCategory,
-        concreteSpecies,
-        incidentType,
-        image,
-        this.getIncidentType(incidentType)
-      );
+
       this.queryService
         .postPoint(
           lat,
@@ -117,7 +111,11 @@ export class AddComponent {
           description,
           image
         )
-        .subscribe(console.log);
+        .subscribe(() => {
+          const callback = () => this.router.navigate(['/map']);
+
+          this.dialogService.openSuccessDialog(callback());
+        });
     });
   }
 }

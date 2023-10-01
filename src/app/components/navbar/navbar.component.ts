@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -30,5 +31,5 @@ export class NavbarComponent {
     this.auth.logout();
   }
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, public data: DataService) {}
 }
