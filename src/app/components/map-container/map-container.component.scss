@@ -1,7 +1,7 @@
 @import "mixins";
 @import "common";
 :host {
-  @include host(cyan);
+  @include host(transparent);
   display: flex;
 }
 
