@@ -15,7 +15,7 @@ export class AddComponent {
   public concreteSpecies;
   public spieciesCategory;
   public incidentType;
-  public incidentTypes = ['Information', 'Warning', 'Danger'];
+  public incidentTypes = ['Informacja', 'Ostrzeżenie', 'Zagrożenie'];
 
   constructor(
     public fb: FormBuilder,
@@ -67,22 +67,22 @@ export class AddComponent {
 
   public getIncidentLevel(level: number): string {
     if (level == 2) {
-      return 'Danger';
+      return 'Zagrożenie';
     }
 
     if (level == 1) {
-      return 'Warning';
+      return 'Ostrzeżenie';
     }
 
-    return 'Information';
+    return 'Informacja';
   }
 
   public getIncidentType(level: string): number {
-    if (level == 'Danger') {
+    if (level == 'Zagrożenie') {
       return 2;
     }
 
-    if (level == 'Warning') {
+    if (level == 'Ostrzeżenie') {
       return 1;
     }
 
