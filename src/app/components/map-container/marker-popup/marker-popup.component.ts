@@ -34,10 +34,6 @@ export class MarkerPopupComponent implements OnInit {
     public cdr: ChangeDetectorRef,
     public queryService: QueryService
   ) {
-    console.log(this.data);
-    if (this.data) {
-    }
-
     setTimeout(() => {
       const {
         concreteSpecies,
@@ -66,12 +62,9 @@ export class MarkerPopupComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {
-    console.log(this.data);
-  }
+  public ngOnInit(): void {}
 
   public getContent(): void {
-    console.log(1231414);
     return this.concreteSpecies ? this.concreteSpecies[0] : '';
   }
 

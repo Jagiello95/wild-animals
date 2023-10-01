@@ -37,7 +37,6 @@ export class CameraComponent {
 
   public onImageCapture(event) {
     this.imageTaken = event.imageAsBase64;
-    console.log(event);
     this.queryService.postImg(this.imageTaken).subscribe((data) => {
       this.router.navigate(['/add'], {
         state: {
@@ -50,9 +49,7 @@ export class CameraComponent {
     });
   }
 
-  public handleInitError($event): void {
-    console.log($event);
-  }
+  public handleInitError($event): void {}
 
   public importFile($event) {
     const file = $event.target.files[0];

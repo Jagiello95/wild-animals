@@ -12,7 +12,5 @@ import { DataService } from 'src/app/shared/services/data.service';
 export class LayoutComponent implements OnInit {
   constructor(public data: DataService) {}
 
-  ngOnInit(): void {
-    console.log('On mobile:', this.data.isMobile);
-  }
+  ngOnInit(): void {}
 }

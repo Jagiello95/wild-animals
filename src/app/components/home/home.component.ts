@@ -10,11 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private queryService: QueryService, public data: DataService, public auth: AuthService, public router : Router) {}
+  constructor(
+    private queryService: QueryService,
+    public data: DataService,
+    public auth: AuthService,
+    public router: Router
+  ) {}
   ngOnInit(): void {
-    this.queryService.testConnection().subscribe(console.log);
-    this.auth.isAuthenticated$.subscribe(c => {
-      if(!c){
+    this.auth.isAuthenticated$.subscribe((c) => {
+      if (!c) {
         this.router.navigate(['/map']);
       }
     });

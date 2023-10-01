@@ -125,10 +125,8 @@ export class MapContainerComponent implements OnInit {
     this.filter.valueChanges
       .pipe(startWith(true), takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
-        console.log('here');
         this.markers.forEach((m: any) => {
           const type = m.options?.icon?.type;
-          console.log(m, type);
 
           if (type === 'pets' && this.isOn('pets')) {
             return;
@@ -148,12 +146,9 @@ export class MapContainerComponent implements OnInit {
       });
   }
 
-  mapClicked($event: any) {
-    console.log($event.latlng.lat, $event.latlng.lng);
-  }
+  mapClicked($event: any) {}
 
   markerClicked($event: any) {
-    console.log($event);
     const id = $event?.target?.options?.icon?.id;
 
     if (id) {
@@ -163,9 +158,7 @@ export class MapContainerComponent implements OnInit {
     }
   }
 
-  markerDragEnd($event: any) {
-    console.log($event.target.getLatLng());
-  }
+  markerDragEnd($event: any) {}
 
   constructor(
     private dialogService: DialogService,
@@ -200,7 +193,7 @@ export class MapContainerComponent implements OnInit {
   private getWarningIcon(id: string): any {
     const icon: any = Leaflet.divIcon({
       className: 'custom-div-icon',
-      html: "<div style='background-color:#FFFF66;' class='marker-pin '></div><i class='material-icons'>notification_important</i>",
+      html: "<div style='background-color:#ffcc00;' class='marker-pin '></div><i class='material-icons'>notification_important</i>",
       iconSize: [30, 42],
       iconAnchor: [15, 42],
     });
