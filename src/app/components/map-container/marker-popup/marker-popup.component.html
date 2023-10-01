@@ -37,8 +37,10 @@
     mat-icon-button
     class="actions--info"
     color="primary"
+    [disabled]="!concreteSpecies"
+    (click)="getWikipedia()"
     aria-label="Example icon button with a home icon"
   >
-    <mat-icon>home</mat-icon>
+    <mat-icon>info_outline</mat-icon>
   </button>
 </div>

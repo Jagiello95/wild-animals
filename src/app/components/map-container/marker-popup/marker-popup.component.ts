@@ -7,6 +7,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { QueryService } from 'src/app/http/query.service';
 
 @Component({
   selector: 'app-marker-popup',
@@ -30,7 +31,8 @@ export class MarkerPopupComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<MarkerPopupComponent>,
-    public cdr: ChangeDetectorRef
+    public cdr: ChangeDetectorRef,
+    public queryService: QueryService
   ) {
     console.log(this.data);
     if (this.data) {
@@ -84,6 +86,12 @@ export class MarkerPopupComponent implements OnInit {
       return 'notification_important';
     } else {
       return 'warning';
+    }
+  }
+
+  public getWikipedia(): void {
+    if (this.concreteSpecies) {
+      this.queryService.getWiki(this.concreteSpecies).subscribe(console.log);
     }
   }
 }

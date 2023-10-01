@@ -6,3 +6,24 @@
   (leafletMapReady)="onMapReady($event)"
   (leafletClick)="mapClicked($event)"
 ></div>
+
+<div class="icon-container">
+  <mat-icon
+    color="primary"
+    [class.iconOff]="!isOn('pets')"
+    (click)="toggleControl('pets')"
+    fontIcon="pets"
+  ></mat-icon>
+  <mat-icon
+    color="primary"
+    [class.iconOff]="!isOn('warn')"
+    (click)="toggleControl('warn')"
+    fontIcon="notification_important"
+  ></mat-icon>
+  <mat-icon
+    color="primary"
+    [class.iconOff]="!isOn('danger')"
+    (click)="toggleControl('danger')"
+    fontIcon="warning"
+  ></mat-icon>
+</div>

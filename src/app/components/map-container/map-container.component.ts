@@ -5,15 +5,17 @@ import {
   QueryList,
   OnInit,
   NgZone,
+  DestroyRef,
 } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, from } from 'rxjs';
+import { Observable, from, startWith } from 'rxjs';
 import { DataService } from 'src/app/shared/services/data.service';
 import { QueryService } from 'src/app/http/query.service';
 import { DialogService } from 'src/app/shared/services/dialog.service';
-
+import { FormBuilder, FormControl } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 Leaflet.Icon.Default.imagePath = 'assets/';
 
 Leaflet.Icon.Default.imagePath = 'assets/';
@@ -27,6 +29,12 @@ export class MapContainerComponent implements OnInit {
   map!: Leaflet.Map;
   markers: Leaflet.Marker[] = [];
   options = null;
+
+  public filter = this.fb.group({
+    pets: [true],
+    warn: [true],
+    danger: [true],
+  });
 
   ngOnInit(): void {
     this.dataService.getPosition().subscribe((data: any) => {
@@ -75,6 +83,7 @@ export class MapContainerComponent implements OnInit {
     const data = {
       position: { lat, lng },
       draggable: false,
+      type,
       id,
     };
 
@@ -113,20 +122,30 @@ export class MapContainerComponent implements OnInit {
       'user'
     );
 
-    this.queryService.getPoints().subscribe((points: any) => {
-      console.log(points);
-      points.forEach((point) => {
-        if (point.x !== this.dataService.currentPosition.lat) {
-          // const type = point.
-          this.addMarker(
-            point.x,
-            point.y,
-            point.incidentType.incidentLevel,
-            point.id
-          );
-        }
+    this.filter.valueChanges
+      .pipe(startWith(true), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        console.log('here');
+        this.markers.forEach((m: any) => {
+          const type = m.options?.icon?.type;
+          console.log(m, type);
+
+          if (type === 'pets' && this.isOn('pets')) {
+            return;
+          }
+
+          if (type === 'warn' && this.isOn('warn')) {
+            return;
+          }
+
+          if (type === 'danger' && this.isOn('danger')) {
+            return;
+          }
+          this.map.removeLayer(m);
+        });
+
+        this.addPoints();
       });
-    });
   }
 
   mapClicked($event: any) {
@@ -152,7 +171,8 @@ export class MapContainerComponent implements OnInit {
     private dialogService: DialogService,
     private dataService: DataService,
     private queryService: QueryService,
-    private zone: NgZone
+    private fb: FormBuilder,
+    private destroyRef: DestroyRef
   ) {}
 
   private getUserIcon(): any {
@@ -173,6 +193,7 @@ export class MapContainerComponent implements OnInit {
     });
 
     icon.id = id;
+    icon.type = 'pets';
     return icon;
   }
 
@@ -185,6 +206,8 @@ export class MapContainerComponent implements OnInit {
     });
 
     icon.id = id;
+    icon.type = 'warn';
+
     return icon;
   }
 
@@ -197,6 +220,45 @@ export class MapContainerComponent implements OnInit {
     });
 
     icon.id = id;
+    icon.type = 'danger';
+
     return icon;
+  }
+
+  private addPoints(): void {
+    this.queryService.getPoints().subscribe((points: any) => {
+      points.forEach((point) => {
+        if (point.incidentType.incidentLevel === 0 && !this.isOn('pets')) {
+          return;
+        }
+
+        if (point.incidentType.incidentLevel === 1 && !this.isOn('warn')) {
+          return;
+        }
+
+        if (point.incidentType.incidentLevel === 2 && !this.isOn('danger')) {
+          return;
+        }
+
+        if (point.x !== this.dataService.currentPosition.lat) {
+          // const type = point.
+          this.addMarker(
+            point.x,
+            point.y,
+            point.incidentType.incidentLevel,
+            point.id
+          );
+        }
+      });
+    });
+  }
+
+  public toggleControl(controlName): void {
+    const control = this.filter.get(controlName);
+    control.setValue(!control.value);
+  }
+
+  public isOn(controlName): boolean {
+    return this.filter.get(controlName)?.value;
   }
 }

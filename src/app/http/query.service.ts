@@ -69,4 +69,9 @@ export class QueryService {
   public getRandom(): number {
     return Math.floor(Math.random() * 10) / 1000;
   }
+
+  public getWiki(species: string): Observable<any> {
+    const wikiApi = `https://hackyeah.azurewebsites.net/Wikipedia?searchString=${species}`;
+    return this.http.get(wikiApi);
+  }
 }

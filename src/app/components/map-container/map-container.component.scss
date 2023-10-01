@@ -40,3 +40,17 @@
 .leaflet-right {
   left: 0 !important;
 }
+
+.icon-container {
+  display: flex;
+  justify-content: space-evenly;
+  bottom: 0.2rem;
+  left: 0.5rem;
+  width: 6rem;
+  z-index: 500;
+  position: fixed;
+}
+
+.iconOff {
+  color: darkgray !important;
+}
