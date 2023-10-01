@@ -2,4 +2,28 @@
   height: 100%;
   width: 100%;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-dialog-content {
+  height: 100%;
+}
+
+.mat-mdc-dialog-title {
+  background-color: #8bc34a;
+  color: white !important;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

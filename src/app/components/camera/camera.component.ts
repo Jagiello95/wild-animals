@@ -37,11 +37,17 @@ export class CameraComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = reader.result.slice(23);
+      this.imageTaken = result as any;
       this.queryService.postImg(result).subscribe((data) => {
         const { concreteSpecies, spieciesCategory, incidentType } = data as any;
 
         this.router.navigate(['/add'], {
-          state: { concreteSpecies, spieciesCategory, incidentType },
+          state: {
+            concreteSpecies,
+            spieciesCategory,
+            incidentType,
+            image: this.imageTaken,
+          },
         });
       });
     };

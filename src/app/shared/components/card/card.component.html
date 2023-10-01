@@ -1,9 +1,4 @@
-<div
-  *ngIf="icon"
-  class="cutout__container"
-  [class.cutoutLeft__container]="iconLeft"
-  [class.cutoutRight__container]="iconRight"
->
+<div *ngIf="icon" class="cutout__container">
   <div class="cutout__fill cutout__fill--one"></div>
   <div class="cutout"></div>
 
@@ -15,4 +10,12 @@
 
 <div class="card">
   <div class="card__header">{{ header }}</div>
+
+  <div
+    *ngIf="content"
+    class="card__content"
+    [class.card__content--column]="column"
+  >
+    <ng-content></ng-content>
+  </div>
 </div>

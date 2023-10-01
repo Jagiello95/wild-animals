@@ -1,4 +1,15 @@
 <button
+  *ngFor="let option of navOptions"
+  color="primary"
+  class="nav-button"
+  mat-mini-fab
+  [routerLink]="option.route"
+  aria-label="Example icon button with a home icon"
+>
+  <mat-icon>{{ option.icon }}</mat-icon>
+</button>
+
+<button
   *ngIf="!(auth.isAuthenticated$ | async)"
   color="primary"
   class="nav-button"
@@ -8,7 +19,9 @@
 >
   <mat-icon>account_circle</mat-icon>
 </button>
-<span *ngIf="(auth.isAuthenticated$ | async) === true">Witaj {{(auth.user$ | async).name}}  </span>
+<span *ngIf="(auth.isAuthenticated$ | async) === true"
+  >Witaj {{ (auth.user$ | async)?.name }}
+</span>
 <button
   *ngIf="(auth.isAuthenticated$ | async) === true"
   color="primary"

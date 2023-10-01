@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { format } from 'date-fns';
 
 @Injectable({
   providedIn: 'root',
@@ -27,22 +28,41 @@ export class QueryService {
     concreteSpecies,
     type,
     incidentLevel,
-    description
+    description,
+    image
   ): Observable<any> {
     const incidentType = {
       incidentLevel,
       type,
     };
     const data = {
-      x,
-      y,
+      x: x + this.getOffset(),
+      y: y + this.getOffset(),
       spieciesCategory,
       concreteSpecies,
       incidentType,
       description,
+      image,
+      creationDate: new Date().toISOString(),
     };
 
     const incidentApi = 'https://hackyeah.azurewebsites.net/Incident/add';
     return this.http.post(incidentApi, data);
+  }
+
+  public getPoints(): Observable<any> {
+    const incidentApi = 'https://hackyeah.azurewebsites.net/Incident';
+    return this.http.get(incidentApi);
+  }
+
+  public getPointById(id: string): Observable<any> {
+    const incidentApi = `https://hackyeah.azurewebsites.net/Incident/byId?id=${id}`;
+    return this.http.get(incidentApi);
+  }
+
+  public getOffset() {
+    const odd = Math.random() >= 0.5;
+
+    return odd ? 0.001 : -0.001;
   }
 }

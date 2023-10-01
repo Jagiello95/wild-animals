@@ -1,6 +1,22 @@
-<h1 mat-dialog-title>Delete file</h1>
-<div mat-dialog-content>Would you like to delete cat.jpeg?</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+<h1 mat-dialog-title>W okolicy:</h1>
+<div mat-dialog-content>
+  <span>
+    There has been <strong>{{ concreteSpecies?.[0] }} </strong> seen here at
+    <strong>{{ creationDate | date : "dd-MM-yyyy HH:mm" }}</strong></span
+  >
+  <div class="mt-1 description" *ngIf="description">
+    <span>{{ description }}</span>
+  </div>
+  <div class="image-container">
+    <img
+      style="display: block; max-width: 100%; height: auto; max-height: 50vh"
+      id="base64image"
+      src="data:image/jpeg;base64, {{ image }}"
+    />
+  </div>
+</div>
+<div class="actions" mat-dialog-actions>
+  <button color="primary" mat-button mat-dialog-close cdkFocusInitial>
+    Ok
+  </button>
 </div>

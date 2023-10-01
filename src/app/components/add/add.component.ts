@@ -25,7 +25,7 @@ export class AddComponent {
 
   buildForm(): FormGroup {
     console.log(this.router.getCurrentNavigation()?.extras?.state);
-    const { concreteSpecies, spieciesCategory, incidentType } =
+    const { concreteSpecies, spieciesCategory, incidentType, image } =
       this.router.getCurrentNavigation().extras.state;
 
     this.concreteSpecies = concreteSpecies.map((word) =>
@@ -38,11 +38,13 @@ export class AddComponent {
     this.incidentType = incidentType;
     console.log(this.concreteSpecies[0]);
 
+    console.log(image);
     return this.fb.group({
       concreteSpecies: [this.concreteSpecies[0]],
       spieciesCategory: [this.spieciesCategory[0]],
       incidentType: [this.getIncidentLevel(this.incidentType.incidentLevel)],
       description: [''],
+      image: [image],
     });
   }
 
@@ -88,14 +90,20 @@ export class AddComponent {
   public submit(): void {
     this.dataService.getPosition().subscribe(({ lat, lng }) => {
       console.log(2);
-      const { concreteSpecies, spieciesCategory, incidentType, description } =
-        this.form.value;
+      const {
+        concreteSpecies,
+        spieciesCategory,
+        incidentType,
+        description,
+        image,
+      } = this.form.value;
       console.log(
         lat,
         lng,
         spieciesCategory,
         concreteSpecies,
         incidentType,
+        image,
         this.getIncidentType(incidentType)
       );
       this.queryService
@@ -106,7 +114,8 @@ export class AddComponent {
           [concreteSpecies],
           incidentType,
           this.getIncidentType(incidentType),
-          description
+          description,
+          image
         )
         .subscribe(console.log);
     });

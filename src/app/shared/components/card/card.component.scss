@@ -89,6 +89,7 @@ $cardHeaderColor: #8bc34a;
     position: absolute;
     left: 50%; /* position the left edge of the element at the middle of the parent */
     transform: translate(-50%, -50%);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 }
 

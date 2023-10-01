@@ -7,6 +7,8 @@ import { Observable, from } from 'rxjs';
 })
 export class DataService {
   public isMobile: boolean = false;
+  public currentPosition: any;
+
   constructor(public detector: DeviceDetectorService) {
     this.isMobile = this.detector.isMobile();
   }

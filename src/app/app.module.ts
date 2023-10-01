@@ -62,7 +62,6 @@ const standalone = [CardComponent];
     MapContainerComponent,
     AuthComponent,
     CameraComponent,
-    MarkerPopupComponent,
     AddComponent,
   ],
   imports: [
