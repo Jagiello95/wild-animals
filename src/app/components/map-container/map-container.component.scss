@@ -44,11 +44,20 @@
 .icon-container {
   display: flex;
   justify-content: space-evenly;
-  bottom: 0.2rem;
+  align-items: center;
+  bottom: 0.5rem;
   left: 0.5rem;
-  width: 6rem;
+  width: 9rem;
   z-index: 500;
   position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 1rem;
+  height: 2.5rem;
+
+  mat-icon {
+    font-size: 1.6rem !important;
+  }
 }
 
 .iconOff {
