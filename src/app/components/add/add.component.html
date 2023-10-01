@@ -33,9 +33,9 @@
       aria-label="Number"
       matInput
       formControlName="spieciesCategory"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="auto1"
     />
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete">
       <mat-option *ngFor="let option of spieciesCategory" [value]="option">
         {{ option }}
       </mat-option>

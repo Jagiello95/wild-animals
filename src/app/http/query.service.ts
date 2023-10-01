@@ -63,6 +63,10 @@ export class QueryService {
   public getOffset() {
     const odd = Math.random() >= 0.5;
 
-    return odd ? 0.001 : -0.001;
+    return odd ? this.getRandom() : -this.getRandom();
+  }
+
+  public getRandom(): number {
+    return Math.floor(Math.random() * 10) / 1000;
   }
 }

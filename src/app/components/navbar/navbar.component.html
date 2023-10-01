@@ -1,14 +1,15 @@
-<button
-  *ngFor="let option of navOptions"
-  color="primary"
-  class="nav-button"
-  mat-mini-fab
-  [routerLink]="option.route"
-  aria-label="Example icon button with a home icon"
->
-  <mat-icon>{{ option.icon }}</mat-icon>
-</button>
-
+<ng-container *ngIf="(auth.isAuthenticated$ | async) === true">
+  <button
+    *ngFor="let option of navOptions"
+    color="primary"
+    class="nav-button"
+    mat-mini-fab
+    [routerLink]="option.route"
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon>{{ option.icon }}</mat-icon>
+  </button>
+</ng-container>
 <button
   *ngIf="!(auth.isAuthenticated$ | async)"
   color="primary"
