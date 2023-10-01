@@ -7,7 +7,7 @@
   [column]="true"
 >
   <mat-form-field class="control">
-    <mat-label>Category</mat-label>
+    <mat-label>Kategoria</mat-label>
 
     <input
       type="text"
@@ -25,7 +25,7 @@
   </mat-form-field>
 
   <mat-form-field class="control">
-    <mat-label>Species</mat-label>
+    <mat-label>Gatunek</mat-label>
 
     <input
       type="text"
@@ -43,7 +43,7 @@
   </mat-form-field>
 
   <mat-form-field class="control">
-    <mat-label>Species</mat-label>
+    <mat-label>Poziom</mat-label>
     <mat-select formControlName="incidentType">
       <mat-option *ngFor="let option of incidentTypes" [value]="option">
         {{ option }}
@@ -52,10 +52,10 @@
   </mat-form-field>
 
   <mat-form-field class="control control--text">
-    <mat-label>Leave a description</mat-label>
+    <mat-label>Opis</mat-label>
     <textarea
       matInput
-      placeholder="Ex. It makes me feel..."
+      placeholder="Napisz parę słów o swoim znalezisku..."
       formControlName="description"
     ></textarea>
   </mat-form-field>
@@ -66,6 +66,6 @@
     color="primary"
     (click)="submit()"
   >
-    Submit
+    Dodaj
   </button>
 </card>
